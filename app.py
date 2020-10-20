@@ -88,6 +88,10 @@ def update():
 @app.route('/delete', methods=['GET', 'DELETE'])
 def delete():
     try:
+         db = firestore.client()
+        # [START quickstart_add_data_one]
+        doc_ref = db.collection(u'users').document(u'alovelace').delete()
+    
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
